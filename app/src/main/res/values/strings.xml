@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">OscarPavlov30Day</string>
     <string name="name1">nameTest</string>
+    <string name="name2">nameTest232323</string>
 
     <string name="desc1">descTest</string>
+    <string name="desc2">descTest</string>
 
     <string name="day1">day 1</string>
 </resources>
