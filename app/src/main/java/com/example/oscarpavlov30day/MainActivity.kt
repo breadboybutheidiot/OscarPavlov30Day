@@ -48,6 +48,13 @@ import kotlin.math.exp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
+import com.example.oscarpavlov30day.R
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,29 +62,147 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             OscarPavlov30DayTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                Surface(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    MainApp()
                 }
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
+fun AppTopBar(modifier: Modifier = Modifier) {
+    CenterAlignedTopAppBar(
+        title = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.app_name),
+                    style = MaterialTheme.typography.displayMedium
+                )
+            }
+        },
         modifier = modifier
     )
+}
+
+@Composable
+fun AppItem(
+    Tip: Tips,
+    modifier: Modifier = Modifier
+) {
+    var expanded by remember { mutableStateOf(false) }
+    val color by animateColorAsState(
+        targetValue = if (expanded) MaterialTheme.colorScheme.tertiaryContainer
+        else MaterialTheme.colorScheme.primaryContainer
+    )
+    println("dsadsadas")
+    Card(modifier = modifier) {
+        Column(
+            modifier = Modifier
+                .animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioNoBouncy,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                )
+                .background(color = color)
+        ) {
+            Row(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(dimensionResource(R.dimen.padding_small))
+            ) {
+                AppInformation(Tip.titles, Tip.days, Tip.imageResourceId, expanded)
+                Spacer(modifier = Modifier.weight(1f))
+
+            }
+            if (expanded) {
+                DogHobby(
+                    Tip.description,
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_small),
+                        end = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_medium)
+                    )
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun DogHobby(
+    @StringRes dogHobby: Int,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(
+            text = stringResource(dogHobby),
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
+@Composable
+fun AppInformation(
+    @StringRes tipName: Int,
+    tipDay: Int,
+    tipImage:Int,
+    expanded: Boolean,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = stringResource(tipDay),
+            style = MaterialTheme.typography.bodyLarge
+        )
+        Text(
+            text = stringResource(tipName),
+            style = MaterialTheme.typography.displayMedium,
+            modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small))
+        )
+        Image(
+            painter = painterResource(tipImage),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = modifier
+                .size(dimensionResource(R.dimen.image_size))
+                .padding(dimensionResource(R.dimen.padding_small))
+                .align(Alignment.CenterHorizontally)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+    }
+}
+
+@Composable
+fun MainApp() {
+    Scaffold(
+        topBar = {
+            AppTopBar()
+        }
+    ) { it ->
+        LazyColumn(contentPadding = it) {
+            items(tips) {
+                AppItem(
+                    Tip = it,
+                    modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
+                )
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     OscarPavlov30DayTheme {
-        Greeting("Android")
+        MainApp()
     }
 }
