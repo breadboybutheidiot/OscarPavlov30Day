@@ -1,11 +1,35 @@
 <resources>
     <string name="app_name">OscarPavlov30Day</string>
-    <string name="name1">nameTest</string>
-    <string name="name2">nameTest232323</string>
-    <string name="name4">dsadadadas</string>
+    <string name="name1">Проведи 15 минут на улице</string>
+    <string name="name2">Выпей утренний кофе или чай в тишине</string>
+    <string name="name3">Съешь один прием пищи в одиночестве или в тишине</string>
+    <string name="name4">Составь список из 5 маленьких радостей, которые есть в твоей жизни прямо сейчас</string>
+    <string name="name5">Сделай одно маленькое дело, которое давно откладывал</string>
+    <string name="name6">Позвони или напиши близкому человеку</string>
+    <string name="name7">Выключи все шаджеты за час до сна</string>
+    <string name="name8">Сходи в парк или лес</string>
+    <string name="name9">Приготовь новое блюдо</string>
+    <string name="name10">Сделай кому-то маленький подарок или комплимент</string>
 
-    <string name="desc1">descTest</string>
-    <string name="desc2">descTest</string>
+    <string name="desc1">Простой прогуляйся бех цели, подыши свежим воздухом</string>
+    <string name="desc2">Сконцентрируйся на вкусе и аромате, не отвлекаясь на телефон</string>
+    <string name="desc3">Осознай вкус каждого кусочка</string>
+    <string name="desc4">И не торопясь выполни их</string>
+    <string name="desc5">Например помой одну тарелу или разбери одну полку</string>
+    <string name="desc6">Просто так, без повода</string>
+    <string name="desc7">Почитай книгу или просто полежи в тишине</string>
+    <string name="desc8">Прислушайся к пению птиц</string>
+    <string name="desc9">Которое никогда не пробовал готовить</string>
+    <string name="desc10">Просто так</string>
 
     <string name="day1">day 1</string>
+    <string name="day2">day 2</string>
+    <string name="day3">day 3</string>
+    <string name="day4">day 4</string>
+    <string name="day5">day 5</string>
+    <string name="day6">day 6</string>
+    <string name="day7">day 7</string>
+    <string name="day8">day 8</string>
+    <string name="day9">day 9</string>
+    <string name="day10">day 10</string>
 </resources>
